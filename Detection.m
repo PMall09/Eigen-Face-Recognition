@@ -1,29 +1,4 @@
-% This function is cited from Tolga Birdal
-% Simple Face Detection, retrieved from: http://www.mathworks.com/matlabcentral/fileexchange/23382
 function [aa,SN_fill,FaceDat] = faceDetection(I)
-%FACEDETECTION detects the face in the given picture
-% code optimized for the following assumptions:
-% 1. Only one face in scene and it is the primary object
-% 2. Faster noise reducion and face detection
-
-% Originaly by Tolga Birdal
-% Implementation of the paper:
-% "A simple and accurate face detection algorithm in complex background"
-% by Yu-Tang Pai, Shanq-Jang Ruan, Mon-Chau Shie, Yi-Chi Liu
-
-% Additions by Tolga Birdal:
-%  Minimum face size constraint
-%  Adaptive theta thresholding (Theta is thresholded by mean2(theata)/4
-%  Parameters are modified by to detect better. Please check the paper for
-%  parameters they propose.
-% Check the paper for more details.
-
-% usage:
-%  I=double(imread('c:\Data\girl1.jpg'));
-%  faceDetection(I);
-% The function will display the bounding box if a face is found.
-
-% No faces at the beginning
 Faces=[];
 numFaceFound=0;
 
