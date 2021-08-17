@@ -1,12 +1,4 @@
-% This is a sample script
-% It demos the face expression recognition using the Eigenface method
-
 disp('Face Expression Recognition Demo Using the Eigenface Method')
-%disp('After your face appeared in the camera window, please left click your mouse to take a picture of youself')
-%disp('Please save your cute picture to D:\CS6527-Computer Vision\Final Project\Project Code\TestImage')
-
-%pictureCapture
-
 TrainImagePath = 'D:\CS6527-Computer Vision\Final Project\Project Code\TrainingImage';
 TestImagePath = 'D:\CS6527-Computer Vision\Final Project\Project Code\TestImage';
 LabelPath = 'D:\CS6527-Computer Vision\Final Project\Project Code\ImageLabel.txt';
@@ -36,12 +28,6 @@ disp(str2)
 %SelectedImage = imread(SelectedImage);
 %imshow(SelectedImage)
 function [numImage,img] = loadImage( strImagePath )
-%LOADIMAGE read in the images from given file Path
-%   numImage is the number of loaded Images
-%   img is the matrix as the input for PCA process
-%   to prepare for PCA, the loaded images are all substracted by mean image
-
-% Constructing Image Loading Space and counting image numbers
 structImages = dir(strImagePath);
 lenImages = length(structImages);
 Images='';
@@ -81,9 +67,6 @@ img = (img - meanImage*ones(1,numImage))';
 end
 
 function pictureCapture
-% PICTURECAPTURE captures the picture from the real time video of the front camera
-% The picture would be captured when user left click the mouse once.
-% User could choose to save the captured picture into any path.
 
 % Set up the front camera
 frontCam = videoinput('winvideo', 1,'YUY2_640x480');
@@ -101,8 +84,6 @@ set(fig1,'Name','Please left click your mouse to capture a picture');
 set(fig1,'WindowButtonDownFcn',@LeftClickFcn);
 
 fig2 = 0;
-% once left click the mouse, one picture would be captured
-% the last captured picture would be saved defautly as "snap.jpg"
     function LeftClickFcn(~,~)
         frame = getsnapshot(frontCam);
         if fig2 == 0
