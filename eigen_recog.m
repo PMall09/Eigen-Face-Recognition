@@ -2,11 +2,7 @@ function [C,minDist,minDistIndex] = eigenFaceRecognition(TrainImg,TestImg,NumTra
 [C,S,L]=princomp(TrainImg,'econ');                   
 EigenRange = [1:30];   % Defined the range of Eigenvalues that would be selected
 C = C(:,EigenRange);
-
-% Projecting Test Image onto Face Space
 ProjectedTestImg = TestImg * C;
-
-% Calculating Euclidean distances
 EucDist = zeros(NumTestImg,NumTrainImg);
 for projectedImgIndex = 1:NumTestImg
     TestImage = ProjectedTestImg(projectedImgIndex,:);
@@ -16,6 +12,4 @@ for projectedImgIndex = 1:NumTestImg
     end
 end
 [minDist,minDistIndex] = min(EucDist,[],2);
-
 end
-
